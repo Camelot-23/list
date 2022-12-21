@@ -1,3 +1,0 @@
-/home/elot/List/list/build/CMakeFiles/main.dir
-/home/elot/List/list/build/CMakeFiles/edit_cache.dir
-/home/elot/List/list/build/CMakeFiles/rebuild_cache.dir
