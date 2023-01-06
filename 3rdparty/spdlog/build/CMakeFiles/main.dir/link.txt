@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/main.dir/main.cpp.o  -o main  -L/home/wict/work/run/stream_service/3rd/spdlog/lib -Wl,-rpath,/home/wict/work/run/stream_service/3rd/spdlog/lib -lpthread -lspdlog 

@@ -1,0 +1,3 @@
+/home/wict/work/run/stream_service/3rd/spdlog/build/CMakeFiles/rebuild_cache.dir
+/home/wict/work/run/stream_service/3rd/spdlog/build/CMakeFiles/main.dir
+/home/wict/work/run/stream_service/3rd/spdlog/build/CMakeFiles/edit_cache.dir
