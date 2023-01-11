@@ -24,6 +24,16 @@ endif()
 # The third party path
 set(THIRD_PARTY_PATH ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty)
 
+# include-path
+set(BASIC_INCLDUE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include/Basic)
+set(FUNCTIONAL_INCLUDE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include/Functional)
+set(MANAGEMENT_INCLUDE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include/Management)
+
+# src-path
+set(BASIC_SRC_PATH ${CMAKE_CURRENT_SOURCE_DIR}/src/Basic)
+set(FUNCTIONAL_SRC_PATH ${CMAKE_CURRENT_SOURCE_DIR}/src/Functional)
+set(MANAGEMENT_SRC_PATH ${CMAKE_CURRENT_SOURCE_DIR}/src/Management)
+
 # paho-mqtt_c
 set(MQTT_C_PATH ${THIRD_PARTY_PATH}/paho.mqtt.c)
 include_directories(${MQTT_C_PATH}/build/_install/include)
@@ -32,9 +42,9 @@ find_library(PahoMqtt_C  NAMES paho-mqtt3c  HINTS ${MQTT_C_PATH}/build/_install/
 find_library(PahoMqtt_AS NAMES paho-mqtt3as HINTS ${MQTT_C_PATH}/build/_install/lib)
 
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
-  message(${PahoMqtt_A})
-  message(${PahoMqtt_C})
-  message(${PahoMqtt_AS})
+  message("PahoMqtt_A : " ${PahoMqtt_A})
+  message("PahoMqtt_C : " ${PahoMqtt_C})
+  message("PahoMqtt_AS : " ${PahoMqtt_AS})
 endif()
 
 # paho-mqtt_cpp
@@ -43,11 +53,22 @@ include_directories(${MQTT_CPP_PATH}/build/_install/include)
 find_library(PahoMqttCpp  NAMES paho-mqttpp3  HINTS ${MQTT_CPP_PATH}/build/_install/lib)
 
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
-  message(${PahoMqttCpp})
+  message("PahoMqttCpp : " ${PahoMqttCpp})
 endif()
 
+include_directories(${BASIC_INCLDUE_PATH}/utils)
+
+
+add_subdirectory(3rdparty/qn_audio)
+
+find_library(QN_RTC NAMES qn_rtc HINTS ${THIRD_PARTY_PATH}/qn_audio/lib/x86_64)
+
 # main
-add_executable(${PROJECT_NAME} src/main.cc)
+add_executable(
+  ${PROJECT_NAME}
+  src/main.cc
+  ${BASIC_SRC_PATH}/utils/timer.cpp
+)
 
 target_link_libraries(
   ${PROJECT_NAME}
@@ -56,8 +77,9 @@ target_link_libraries(
   # ${PahoMqtt_C}
   ${PahoMqtt_AS}
   ${PahoMqttCpp}
-)
 
-# target_link_libraries(${PROJECT_NAME} pthread)
+  ${QN_RTC}
+  qn_audio
+)
 
 # target_compile_definitions(main PUBLIC Debug)

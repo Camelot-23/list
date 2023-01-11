@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC   -shared -Wl,-soname,libqn_audio.so -o libqn_audio.so CMakeFiles/qn_audio.dir/src/simple_client.cc.o  -L/home/wict/work/run/stream_service/3rd/qn_audio/lib/aarch64_linux_gnu -Wl,-rpath,/home/wict/work/run/stream_service/3rd/qn_audio/lib/aarch64_linux_gnu: -lpthread -lqn_rtc -ldl -lm 

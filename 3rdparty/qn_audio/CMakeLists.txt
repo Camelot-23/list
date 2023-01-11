@@ -6,7 +6,7 @@ cmake_minimum_required( VERSION 3.10 )
 
 aux_source_directory(./src DIR_SRCS)
 
-link_directories(${PROJECT_SOURCE_DIR}/lib/aarch64_linux_gnu)
+link_directories(${PROJECT_SOURCE_DIR}/lib/x86_64)
 
 include_directories(${PROJECT_SOURCE_DIR}/include )
 
